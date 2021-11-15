@@ -1,0 +1,24 @@
+ dimension: employee_size_segment {
+    case: {
+      when: {
+        sql:  coalesce(${maxemployee},${minemployee}) <=5 ;;
+        label: "VSB"
+      }
+      when: {
+        sql: coalesce(${maxemployee},${minemployee}) >=6 and coalesce(${maxemployee},${minemployee}) <=25 ;;
+        label: "SB"
+      }
+      when: {
+        sql: coalesce(${maxemployee},${minemployee}) >=26 and coalesce(${maxemployee},${minemployee}) <=200 ;;
+        label: "MM"
+      }
+      when: {
+        sql: coalesce(${maxemployee},${minemployee}) >=201 ;;
+        label: "Corp"
+     }
+      else: "VSB"
+      
+    }
+    label: "Employee Size Segment"
+    group_label: "Employee Size"
+  }
